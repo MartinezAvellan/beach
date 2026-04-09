@@ -1,0 +1,95 @@
+{
+	"info": {
+		"name": "Cameras API",
+		"description": "Cameras API\n\nCatalogo de 187 cameras embebido no binario.\nStreams HLS via URL direta (video-auth1.iol.pt).\nCondicoes meteorologicas via APIs publicas IPMA.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "camera_id",
+			"value": "penichesupertubos",
+			"description": "Exemplos: penichesupertubos, costadacaparica, praiadanazare, praiadospescadores, parede, santoamaro, matosinhos"
+		}
+	],
+	"item": [
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "Healthcheck",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": ["{{base_url}}"],
+							"path": ["health"]
+						},
+						"description": "Verifica se a API está online."
+					}
+				}
+			]
+		},
+		{
+			"name": "Cameras",
+			"item": [
+				{
+					"name": "List Cameras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cameras",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "cameras"]
+						},
+						"description": "Lista 187 câmeras do catálogo estático.\nFonte: embed (go:embed), zero requests externos.\nResposta: ~100µs."
+					}
+				},
+				{
+					"name": "Get Camera by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cameras/{{camera_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "cameras", "{{camera_id}}"]
+						},
+						"description": "Detalhe de uma câmera.\nFonte: embed estático.\nErro: 404 camera_not_found."
+					}
+				},
+				{
+					"name": "Resolve Camera Stream",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cameras/{{camera_id}}/stream",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "cameras", "{{camera_id}}", "stream"]
+						},
+						"description": "URL HLS (.m3u8) da camera.\nFonte: URL montada direto (stream_slug embebido no catalogo), ~20us.\n149 cameras com stream, 38 sem (retornam 503)."
+					}
+				},
+				{
+					"name": "Get Camera Conditions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/cameras/{{camera_id}}/conditions",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "cameras", "{{camera_id}}", "conditions"]
+						},
+						"description": "Condições meteorológicas e oceanográficas.\nFonte: 4 APIs JSON públicas do IPMA.\nDados: ondulação, período, direção, temp. água, temp. ar, vento (km/h), UV, humidade, tempo.\nCache: 15 minutos. Primeiro request ~300ms, seguintes ~100µs."
+					}
+				}
+			]
+		}
+	]
+}

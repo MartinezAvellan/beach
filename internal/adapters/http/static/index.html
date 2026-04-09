@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0c1220">
+  <title>Beach Live</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      --bg:#0c1220;
+      --surface:rgba(15,23,42,0.85);
+      --surface-solid:#0f172a;
+      --card:#162032;
+      --card-hover:#1c2a42;
+      --border:rgba(56,189,248,0.08);
+      --border-active:rgba(56,189,248,0.25);
+      --text:#f0f6ff;
+      --text2:#7a8ba8;
+      --text3:#4a5c78;
+      --cyan:#06d6a0;
+      --blue:#38bdf8;
+      --orange:#f59e0b;
+      --pink:#f472b6;
+      --red:#ef4444;
+      --gradient:linear-gradient(135deg,#06d6a0 0%,#38bdf8 50%,#818cf8 100%);
+      --gradient2:linear-gradient(135deg,#0c1220 0%,#1a1a3e 100%);
+      --glass:rgba(15,23,42,0.65);
+      --r:16px;
+      --r-sm:10px;
+    }
+
+    body{
+      font-family:'Inter',system-ui,-apple-system,sans-serif;
+      background:var(--gradient2);
+      background-attachment:fixed;
+      color:var(--text);
+      min-height:100dvh;
+      overflow-x:hidden;
+    }
+
+    /* === HEADER === */
+    header{
+      background:var(--glass);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 20px;
+      height:56px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:sticky;top:0;z-index:100;
+    }
+    .logo{
+      font-size:20px;font-weight:800;
+      background:var(--gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:-0.5px;
+    }
+    .header-right{display:flex;align-items:center;gap:12px}
+    .badge{
+      background:var(--card);
+      border:1px solid var(--border);
+      padding:4px 10px;
+      border-radius:20px;
+      font-size:11px;
+      color:var(--text2);
+      font-weight:500;
+    }
+    .badge b{color:var(--cyan);font-weight:700}
+    .live-dot{
+      width:6px;height:6px;border-radius:50%;
+      background:var(--cyan);display:inline-block;
+      margin-right:4px;
+      animation:pulse 2s ease infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+    /* === LAYOUT === */
+    .app{
+      display:grid;
+      grid-template-columns:300px 1fr;
+      min-height:calc(100dvh - 56px);
+    }
+
+    /* === SIDEBAR === */
+    .sidebar{
+      background:var(--surface-solid);
+      border-right:1px solid var(--border);
+      display:flex;flex-direction:column;overflow:hidden;
+    }
+    .search-box{padding:12px;border-bottom:1px solid var(--border)}
+    .search-box input{
+      width:100%;padding:10px 14px 10px 36px;
+      border-radius:var(--r-sm);
+      border:1px solid var(--border);
+      background:var(--card);color:var(--text);
+      font-size:13px;font-family:inherit;
+      outline:none;transition:all .2s;
+    }
+    .search-box input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(56,189,248,0.1)}
+    .search-box input::placeholder{color:var(--text3)}
+    .search-wrap{position:relative}
+    .search-icon{
+      position:absolute;left:12px;top:50%;transform:translateY(-50%);
+      color:var(--text3);pointer-events:none;font-size:14px;
+    }
+
+    .camera-list{
+      flex:1;overflow-y:auto;
+      scrollbar-width:thin;
+      scrollbar-color:var(--card) transparent;
+    }
+    .cam-item{
+      padding:10px 14px;cursor:pointer;
+      border-bottom:1px solid var(--border);
+      transition:all .15s;display:flex;
+      align-items:center;gap:10px;
+    }
+    .cam-item:hover{background:var(--card-hover)}
+    .cam-item.active{
+      background:linear-gradient(90deg,rgba(6,214,160,0.12),rgba(56,189,248,0.08));
+      border-left:3px solid var(--cyan);
+    }
+    .cam-item.active .cam-name{color:var(--cyan)}
+    .cam-info{min-width:0;flex:1}
+    .cam-name{
+      font-size:13px;font-weight:600;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .cam-location{font-size:11px;color:var(--text2);margin-top:1px}
+    .cam-live{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--cyan);flex-shrink:0;
+      box-shadow:0 0 6px rgba(6,214,160,0.4);
+    }
+    .cam-live.offline{background:var(--text3);box-shadow:none}
+    .cam-count{
+      padding:8px 14px;font-size:11px;color:var(--text3);
+      border-bottom:1px solid var(--border);font-weight:500;
+    }
+
+    /* === MAIN === */
+    .main{display:flex;flex-direction:column;overflow-y:auto}
+
+    /* === PLAYER === */
+    .player-wrap{position:relative;background:#000;border-radius:0}
+    .player-wrap video{width:100%;aspect-ratio:16/9;max-height:65vh;object-fit:contain;display:block}
+    .player-overlay{
+      position:absolute;inset:0;display:flex;
+      align-items:center;justify-content:center;
+      background:rgba(12,18,32,0.7);
+      backdrop-filter:blur(4px);
+      flex-direction:column;gap:12px;
+    }
+    .player-overlay.hidden{display:none}
+    .player-overlay span{color:var(--text2);font-size:14px}
+    .live-badge{
+      position:absolute;top:16px;left:16px;
+      background:rgba(239,68,68,0.9);
+      padding:4px 10px;border-radius:6px;
+      font-size:11px;font-weight:700;
+      text-transform:uppercase;letter-spacing:1px;
+      display:flex;align-items:center;gap:6px;
+      backdrop-filter:blur(4px);z-index:5;
+    }
+    .live-badge::before{
+      content:'';width:6px;height:6px;border-radius:50%;
+      background:#fff;animation:pulse 1.5s ease infinite;
+    }
+
+    /* === TITLE BAR === */
+    .title-bar{
+      padding:16px 20px;
+      background:var(--surface-solid);
+      border-bottom:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:8px;
+    }
+    .title-bar h2{font-size:18px;font-weight:700;letter-spacing:-0.3px}
+    .title-bar .region{font-size:12px;color:var(--text2);margin-top:2px}
+    .timer{
+      font-size:11px;color:var(--text3);
+      background:var(--card);padding:4px 10px;
+      border-radius:20px;border:1px solid var(--border);
+    }
+
+    /* === CONDITIONS === */
+    .conditions{
+      padding:16px 20px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:10px;
+    }
+    .cond-card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:16px;text-align:center;
+      transition:all .2s;
+      position:relative;overflow:hidden;
+    }
+    .cond-card:hover{
+      border-color:var(--border-active);
+      transform:translateY(-1px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.2);
+    }
+    .cond-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;
+      height:2px;border-radius:var(--r) var(--r) 0 0;
+    }
+    .cond-card:nth-child(1)::before{background:var(--blue)}
+    .cond-card:nth-child(2)::before{background:var(--blue)}
+    .cond-card:nth-child(3)::before{background:var(--cyan)}
+    .cond-card:nth-child(4)::before{background:var(--orange)}
+    .cond-card:nth-child(5)::before{background:var(--pink)}
+    .cond-card:nth-child(6)::before{background:var(--orange)}
+    .cond-card:nth-child(7)::before{background:var(--cyan)}
+    .cond-card:nth-child(8)::before{background:var(--pink)}
+    .cond-icon{font-size:20px;margin-bottom:6px}
+    .cond-label{
+      font-size:10px;color:var(--text3);
+      text-transform:uppercase;letter-spacing:0.8px;
+      font-weight:600;margin-bottom:8px;
+    }
+    .cond-value{font-size:22px;font-weight:800;letter-spacing:-0.5px}
+    .cond-value.small{font-size:14px;font-weight:600}
+    .cond-sub{font-size:11px;color:var(--text2);margin-top:4px;font-weight:500}
+
+    /* === EMPTY STATE === */
+    .empty-state{
+      flex:1;display:flex;align-items:center;justify-content:center;
+      flex-direction:column;gap:16px;padding:40px;text-align:center;
+    }
+    .empty-wave{font-size:64px;opacity:0.15}
+    .empty-title{font-size:20px;font-weight:700;color:var(--text2)}
+    .empty-sub{font-size:13px;color:var(--text3);max-width:260px;line-height:1.5}
+
+    /* === MOBILE === */
+    .mobile-toggle{
+      display:none;
+      background:var(--card);color:var(--text);
+      border:1px solid var(--border);
+      padding:6px 14px;border-radius:var(--r-sm);
+      font-size:12px;font-weight:600;cursor:pointer;
+      font-family:inherit;transition:all .2s;
+    }
+    .mobile-toggle:active{transform:scale(0.95)}
+
+    @media(max-width:768px){
+      .app{grid-template-columns:1fr}
+      .sidebar{
+        position:fixed;inset:56px 0 0 0;z-index:90;
+        transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+      }
+      .sidebar.open{transform:translateX(0)}
+      .mobile-toggle{display:block}
+      .player-wrap video{max-height:35vh}
+      .conditions{grid-template-columns:repeat(2,1fr);padding:12px;gap:8px}
+      .cond-card{padding:12px}
+      .cond-value{font-size:18px}
+      .title-bar{padding:12px 16px}
+      .title-bar h2{font-size:16px}
+      .empty-wave{font-size:48px}
+    }
+    @media(max-width:380px){
+      .conditions{grid-template-columns:repeat(2,1fr);gap:6px}
+      .cond-card{padding:10px}
+    }
+
+    /* === LOADING === */
+    .spinner{
+      width:36px;height:36px;
+      border:3px solid var(--card);
+      border-top-color:var(--cyan);
+      border-radius:50%;
+      animation:spin .7s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--card);border-radius:3px}
+    ::-webkit-scrollbar-thumb:hover{background:var(--card-hover)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">BEACH LIVE</div>
+    <div class="header-right">
+      <button class="mobile-toggle" onclick="toggleSidebar()">Spots</button>
+      <div class="badge"><span class="live-dot"></span> <b id="headerCount">187</b> spots</div>
+    </div>
+  </header>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="search-box">
+        <div class="search-wrap">
+          <span class="search-icon">&#x1F50D;</span>
+          <input type="text" id="search" placeholder="Procurar spot..." autocomplete="off">
+        </div>
+      </div>
+      <div class="cam-count" id="camCount">187 spots</div>
+      <div class="camera-list" id="cameraList"></div>
+    </aside>
+
+    <main class="main" id="main">
+      <div class="empty-state" id="emptyState">
+        <div class="empty-wave">&#x1F30A;</div>
+        <div class="empty-title">Escolhe o teu spot</div>
+        <div class="empty-sub">Seleciona uma praia na lista para ver o stream ao vivo e as condicoes do mar</div>
+      </div>
+
+      <div id="playerSection" style="display:none;">
+        <div class="player-wrap">
+          <video id="video" autoplay muted playsinline></video>
+          <div class="live-badge" id="liveBadge" style="display:none">LIVE</div>
+          <div class="player-overlay" id="playerOverlay">
+            <div class="spinner"></div>
+            <span>A carregar stream...</span>
+          </div>
+        </div>
+
+        <div class="title-bar">
+          <div>
+            <h2 id="camTitle">-</h2>
+            <div class="region" id="camRegion">-</div>
+          </div>
+          <div class="timer" id="refreshTimer"></div>
+        </div>
+
+        <div class="conditions" id="conditions"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const API = '';
+    const ICONS = {
+      'Ondulacao':'&#x1F30A;','Periodo':'&#x23F1;','Temp. Agua':'&#x1F321;',
+      'Temp. Ar':'&#x2600;','Vento':'&#x1F4A8;','UV':'&#x1F576;',
+      'Humidade':'&#x1F4A7;','Tempo':'&#x26C5;'
+    };
+    let cameras = [];
+    let activeCamera = null;
+    let hls = null;
+    let refreshInterval = null;
+    let countdownInterval = null;
+    let nextRefresh = 0;
+
+    async function init() {
+      cameras = await fetchJSON('/api/v1/cameras');
+      if (cameras && cameras.items) cameras = cameras.items;
+      document.getElementById('headerCount').textContent = cameras.length;
+      document.getElementById('camCount').textContent = `${cameras.length} spots`;
+      renderCameraList(cameras);
+
+      document.getElementById('search').addEventListener('input', (e) => {
+        const q = e.target.value.toLowerCase();
+        const filtered = cameras.filter(c =>
+          c.name.toLowerCase().includes(q) ||
+          c.location.toLowerCase().includes(q) ||
+          c.id.toLowerCase().includes(q)
+        );
+        document.getElementById('camCount').textContent = `${filtered.length} spots`;
+        renderCameraList(filtered);
+      });
+    }
+
+    function renderCameraList(list) {
+      const el = document.getElementById('cameraList');
+      el.innerHTML = list.map(c => `
+        <div class="cam-item ${activeCamera && activeCamera.id === c.id ? 'active' : ''}"
+             onclick="selectCamera('${c.id}')">
+          <div class="cam-info">
+            <div class="cam-name">${c.name}</div>
+            <div class="cam-location">${c.location}</div>
+          </div>
+          <div class="cam-live ${c.stream_slug ? '' : 'offline'}"></div>
+        </div>
+      `).join('');
+    }
+
+    function selectCamera(id) {
+      const cam = cameras.find(c => c.id === id);
+      if (!cam) return;
+      activeCamera = cam;
+
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('playerSection').style.display = 'block';
+      document.getElementById('camTitle').textContent = cam.name;
+      document.getElementById('camRegion').textContent = `${cam.location} \u2022 ${cam.region}`;
+      document.getElementById('liveBadge').style.display = 'none';
+      document.getElementById('conditions').innerHTML =
+        '<div class="cond-card" style="grid-column:1/-1;padding:24px"><div class="spinner" style="margin:0 auto"></div></div>';
+      refilter();
+      closeSidebar();
+
+      loadStream(id);
+      loadConditions(id);
+
+      clearInterval(refreshInterval);
+      clearInterval(countdownInterval);
+      nextRefresh = Date.now() + 300000;
+      refreshInterval = setInterval(() => {
+        if (activeCamera && activeCamera.id === id) {
+          loadConditions(id);
+          loadStream(id);
+          nextRefresh = Date.now() + 300000;
+        }
+      }, 300000);
+      countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    async function loadStream(id) {
+      const overlay = document.getElementById('playerOverlay');
+      const badge = document.getElementById('liveBadge');
+      overlay.classList.remove('hidden');
+      overlay.innerHTML = '<div class="spinner"></div><span>A carregar stream...</span>';
+      badge.style.display = 'none';
+
+      const data = await fetchJSON(`/api/v1/cameras/${id}/stream`);
+      if (!data || !data.stream_url) {
+        overlay.innerHTML = '<span>&#x1F4F7; Stream indisponivel</span>';
+        return;
+      }
+
+      const video = document.getElementById('video');
+      if (hls) { hls.destroy(); hls = null; }
+
+      if (Hls.isSupported()) {
+        hls = new Hls({ enableWorker:true, lowLatencyMode:true });
+        hls.loadSource(data.stream_url);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          video.play();
+          overlay.classList.add('hidden');
+          badge.style.display = 'flex';
+        });
+        hls.on(Hls.Events.ERROR, (_, d) => {
+          if (d.fatal) {
+            overlay.classList.remove('hidden');
+            overlay.innerHTML = '<span>&#x26A0; Erro no stream</span>';
+            badge.style.display = 'none';
+          }
+        });
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = data.stream_url;
+        video.addEventListener('loadedmetadata', () => {
+          video.play();
+          overlay.classList.add('hidden');
+          badge.style.display = 'flex';
+        }, { once: true });
+      } else {
+        overlay.innerHTML = '<span>HLS nao suportado neste browser</span>';
+      }
+    }
+
+    async function loadConditions(id) {
+      const el = document.getElementById('conditions');
+      const data = await fetchJSON(`/api/v1/cameras/${id}/conditions`);
+      if (!data) { el.innerHTML = ''; return; }
+
+      const cards = [
+        { label:'Ondulacao', value:data.wave_height, sub:data.wave_direction },
+        { label:'Periodo', value:data.wave_period },
+        { label:'Temp. Agua', value:data.water_temp },
+        { label:'Temp. Ar', value:data.air_temp },
+        { label:'Vento', value:data.wind_speed, sub:data.wind_direction },
+        { label:'UV', value:data.uv_index },
+        { label:'Humidade', value:data.humidity },
+        { label:'Tempo', value:data.weather, small:true },
+      ].filter(c => c.value);
+
+      el.innerHTML = cards.map(c => `
+        <div class="cond-card">
+          <div class="cond-icon">${ICONS[c.label] || ''}</div>
+          <div class="cond-label">${c.label}</div>
+          <div class="cond-value ${c.small ? 'small' : ''}">${c.value}</div>
+          ${c.sub ? `<div class="cond-sub">${c.sub}</div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function updateCountdown() {
+      const remaining = Math.max(0, Math.ceil((nextRefresh - Date.now()) / 1000));
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      document.getElementById('refreshTimer').textContent =
+        `${m}:${s.toString().padStart(2,'0')}`;
+    }
+
+    function refilter() {
+      const q = document.getElementById('search').value.toLowerCase();
+      const list = q
+        ? cameras.filter(c =>
+            c.name.toLowerCase().includes(q) ||
+            c.location.toLowerCase().includes(q) ||
+            c.id.toLowerCase().includes(q))
+        : cameras;
+      renderCameraList(list);
+    }
+
+    function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open') }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open') }
+
+    async function fetchJSON(path) {
+      try {
+        const res = await fetch(API + path);
+        if (!res.ok) return null;
+        return await res.json();
+      } catch { return null; }
+    }
+
+    init();
+  </script>
+</body>
+</html>

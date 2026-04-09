@@ -1,0 +1,1311 @@
+[
+  {
+    "id": "penichesupertubos",
+    "name": "Peniche Supertubos",
+    "location": "Peniche",
+    "region": "Portugal",
+    "stream_slug": "supertubos"
+  },
+  {
+    "id": "portosanto",
+    "name": "Porto Santo",
+    "location": "Porto",
+    "region": "Portugal",
+    "stream_slug": "bcportosanto"
+  },
+  {
+    "id": "saopedrodoestoril",
+    "name": "Sao Pedro Do Estoril",
+    "location": "Sao",
+    "region": "Portugal",
+    "stream_slug": "saopedroestoria"
+  },
+  {
+    "id": "praiadospescadores",
+    "name": "Praia Dos Pescadores",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcpescadores"
+  },
+  {
+    "id": "praiadatorre",
+    "name": "Praia Da Torre",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bctorre"
+  },
+  {
+    "id": "parede",
+    "name": "Parede",
+    "location": "Parede",
+    "region": "Portugal",
+    "stream_slug": "parede"
+  },
+  {
+    "id": "santoamaro",
+    "name": "Santo Amaro",
+    "location": "Santo",
+    "region": "Portugal",
+    "stream_slug": "santoamaro"
+  },
+  {
+    "id": "tamariz",
+    "name": "Tamariz",
+    "location": "Tamariz",
+    "region": "Portugal",
+    "stream_slug": "tamariz"
+  },
+  {
+    "id": "madeirapauldomar",
+    "name": "Madeira Paul Do Mar",
+    "location": "Madeira",
+    "region": "Portugal",
+    "stream_slug": "bcpauldomar2"
+  },
+  {
+    "id": "praiadecarcavelos",
+    "name": "Praia De Carcavelos",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "carcavelos"
+  },
+  {
+    "id": "costadacaparica",
+    "name": "Costa Da Caparica",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "costacaparicacds"
+  },
+  {
+    "id": "praiadematosinhos",
+    "name": "Praia De Matosinhos",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "matosinhos"
+  },
+  {
+    "id": "praiadabarra",
+    "name": "Praia Da Barra",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "aveiro"
+  },
+  {
+    "id": "praiadonorte",
+    "name": "Praia Do Norte",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadeespinho",
+    "name": "Praia De Espinho",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "espinho"
+  },
+  {
+    "id": "praiagrande",
+    "name": "Praia Grande",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiagrande"
+  },
+  {
+    "id": "praiadoguincho",
+    "name": "Praia Do Guincho",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiaguinchosul"
+  },
+  {
+    "id": "praiadanazare",
+    "name": "Praia Da Nazare",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "nazarepraiadavila"
+  },
+  {
+    "id": "furadouro",
+    "name": "Furadouro",
+    "location": "Furadouro",
+    "region": "Portugal",
+    "stream_slug": "furadouro"
+  },
+  {
+    "id": "santacruz",
+    "name": "Santa Cruz",
+    "location": "Santa",
+    "region": "Portugal",
+    "stream_slug": "santacruz"
+  },
+  {
+    "id": "arrifana",
+    "name": "Arrifana",
+    "location": "Arrifana",
+    "region": "Portugal",
+    "stream_slug": "arrifana"
+  },
+  {
+    "id": "lagideebaia",
+    "name": "Lagide E Baia",
+    "location": "Lagide",
+    "region": "Portugal",
+    "stream_slug": "lagide"
+  },
+  {
+    "id": "carvoeiro",
+    "name": "Carvoeiro",
+    "location": "Carvoeiro",
+    "region": "Portugal",
+    "stream_slug": "carvoeiro"
+  },
+  {
+    "id": "penichebalealpanoramica",
+    "name": "Peniche Baleal Panoramica",
+    "location": "Peniche",
+    "region": "Portugal",
+    "stream_slug": "bcbalealgeral"
+  },
+  {
+    "id": "ribeiradilhas",
+    "name": "Ribeira Dilhas",
+    "location": "Ribeira",
+    "region": "Portugal",
+    "stream_slug": "bcmafraribeira"
+  },
+  {
+    "id": "praiadarocha",
+    "name": "Praia Da Rocha",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiadarocha"
+  },
+  {
+    "id": "fozdoarelho",
+    "name": "Foz Do Arelho",
+    "location": "Foz",
+    "region": "Portugal",
+    "stream_slug": "bcfozdoarelho"
+  },
+  {
+    "id": "praiadopedrogao",
+    "name": "Praia Do Pedrogao",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "costadacaparicapraianova",
+    "name": "Costa Da Caparica Praia Nova",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bccaparicanovapraia"
+  },
+  {
+    "id": "lecadapalmeira",
+    "name": "Leca Da Palmeira",
+    "location": "Leca",
+    "region": "Portugal",
+    "stream_slug": "lecadapalmeira"
+  },
+  {
+    "id": "praiadafalesia",
+    "name": "Praia Da Falesia",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "vilamoura"
+  },
+  {
+    "id": "paredesdavitoria",
+    "name": "Paredes Da Vitoria",
+    "location": "Paredes",
+    "region": "Portugal",
+    "stream_slug": "bcparedesvitoria"
+  },
+  {
+    "id": "saopedrodemoel",
+    "name": "Sao Pedro De Moel",
+    "location": "Sao",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "esmoriz",
+    "name": "Esmoriz",
+    "location": "Esmoriz",
+    "region": "Portugal",
+    "stream_slug": "esmoriz"
+  },
+  {
+    "id": "fontedatelha",
+    "name": "Fonte Da Telha",
+    "location": "Fonte",
+    "region": "Portugal",
+    "stream_slug": "fontedatelha"
+  },
+  {
+    "id": "praiadoamado",
+    "name": "Praia Do Amado",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcamado"
+  },
+  {
+    "id": "costadecaparicasaojoaocovadovapor",
+    "name": "Costa De Caparica Sao Joao Cova Do Vapor",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bccostasaojoao"
+  },
+  {
+    "id": "ofir",
+    "name": "Ofir",
+    "location": "Ofir",
+    "region": "Portugal",
+    "stream_slug": "bcofir"
+  },
+  {
+    "id": "praiacanidenortesul",
+    "name": "Praia Canide Norte Sul",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bccanidelo"
+  },
+  {
+    "id": "costadacaparicariviera",
+    "name": "Costa Da Caparica Riviera",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "riviera"
+  },
+  {
+    "id": "praiadaluz",
+    "name": "Praia Da Luz",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "luz"
+  },
+  {
+    "id": "praiademira",
+    "name": "Praia De Mira",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcmira"
+  },
+  {
+    "id": "praiadatorreira",
+    "name": "Praia Da Torreira",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "torreira"
+  },
+  {
+    "id": "saomartinhodoporto",
+    "name": "Sao Martinho Do Porto",
+    "location": "Sao",
+    "region": "Portugal",
+    "stream_slug": "bcsaomartinho"
+  },
+  {
+    "id": "ericeirapraiadosul",
+    "name": "Ericeira Praia Do Sul",
+    "location": "Ericeira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "figueiradafozcabedelo",
+    "name": "Figueira Da Foz Cabedelo",
+    "location": "Figueira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "areiabranca",
+    "name": "Areia Branca",
+    "location": "Areia",
+    "region": "Portugal",
+    "stream_slug": "bcareiabranca"
+  },
+  {
+    "id": "alvor",
+    "name": "Alvor",
+    "location": "Alvor",
+    "region": "Portugal",
+    "stream_slug": "alvor"
+  },
+  {
+    "id": "meiapraia",
+    "name": "Meia Praia",
+    "location": "Meia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiasesimbra",
+    "name": "Praia Sesimbra",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "sesimbra"
+  },
+  {
+    "id": "praiadonortecanhaonazare",
+    "name": "Praia Do Norte Canhao Nazare",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "canhaonazare"
+  },
+  {
+    "id": "armacaodepera",
+    "name": "Armacao De Pera",
+    "location": "Armacao",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "carcaveloscalhau",
+    "name": "Carcavelos Calhau",
+    "location": "Carcavelos",
+    "region": "Portugal",
+    "stream_slug": "carcavelos2"
+  },
+  {
+    "id": "monteclerigo",
+    "name": "Monte Clerigo",
+    "location": "Monte",
+    "region": "Portugal",
+    "stream_slug": "bcmonteclerigo"
+  },
+  {
+    "id": "apulia",
+    "name": "Apulia",
+    "location": "Apulia",
+    "region": "Portugal",
+    "stream_slug": "bcapulia"
+  },
+  {
+    "id": "praiadesantarita",
+    "name": "Praia De Santa Rita",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "vimeiro"
+  },
+  {
+    "id": "santacruzpraiaazul",
+    "name": "Santa Cruz Praia Azul",
+    "location": "Santa",
+    "region": "Portugal",
+    "stream_slug": "bcpraiaazul"
+  },
+  {
+    "id": "costadacaparicatarquinio",
+    "name": "Costa Da Caparica Tarquinio",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bctarquinho"
+  },
+  {
+    "id": "praiadesaotorpes",
+    "name": "Praia De Sao Torpes",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "saotorpes"
+  },
+  {
+    "id": "praiadavieira",
+    "name": "Praia Da Vieira",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiagrandesul",
+    "name": "Praia Grande Sul",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiagrande2"
+  },
+  {
+    "id": "faro",
+    "name": "Faro",
+    "location": "Faro",
+    "region": "Portugal",
+    "stream_slug": "bcfaro"
+  },
+  {
+    "id": "vianadocastelocabedelo",
+    "name": "Viana Do Castelo Cabedelo",
+    "location": "Viana",
+    "region": "Portugal",
+    "stream_slug": "bccabedeloviana"
+  },
+  {
+    "id": "praiadatocha",
+    "name": "Praia Da Tocha",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bctocha"
+  },
+  {
+    "id": "praiaverde",
+    "name": "Praia Verde",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcpraiaverde"
+  },
+  {
+    "id": "fozdolizandro",
+    "name": "Foz Do Lizandro",
+    "location": "Foz",
+    "region": "Portugal",
+    "stream_slug": "fozdolizandro"
+  },
+  {
+    "id": "figueiradafozcabedelobuarcos",
+    "name": "Figueira Da Foz Cabedelo Buarcos",
+    "location": "Figueira",
+    "region": "Portugal",
+    "stream_slug": "figueiradafoz"
+  },
+  {
+    "id": "praiadagale",
+    "name": "Praia Da Gale",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcgale"
+  },
+  {
+    "id": "praiadoguinchonorte",
+    "name": "Praia Do Guincho Norte",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiaguinchonorte"
+  },
+  {
+    "id": "costanova",
+    "name": "Costa Nova",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "costanova"
+  },
+  {
+    "id": "praiadopeixebaiadecascais",
+    "name": "Praia Do Peixe Baia De Cascais",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiadospescadores"
+  },
+  {
+    "id": "figueiradafoztamargueira",
+    "name": "Figueira Da Foz Tamargueira",
+    "location": "Figueira",
+    "region": "Portugal",
+    "stream_slug": "bcfigueiradois"
+  },
+  {
+    "id": "ericeira",
+    "name": "Ericeira",
+    "location": "Ericeira",
+    "region": "Portugal",
+    "stream_slug": "ericeiraspots"
+  },
+  {
+    "id": "comporta",
+    "name": "Comporta",
+    "location": "Comporta",
+    "region": "Portugal",
+    "stream_slug": "bccomporta"
+  },
+  {
+    "id": "praiadaamoreira",
+    "name": "Praia Da Amoreira",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadasmacas",
+    "name": "Praia Das Macas",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiadasmacas"
+  },
+  {
+    "id": "esposende",
+    "name": "Esposende",
+    "location": "Esposende",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadopeneco",
+    "name": "Praia Do Peneco",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiadopeneco"
+  },
+  {
+    "id": "vilapraiadeancora",
+    "name": "Vila Praia De Ancora",
+    "location": "Vila",
+    "region": "Portugal",
+    "stream_slug": "bcvilapraiadeancora"
+  },
+  {
+    "id": "lagoadealbufeira",
+    "name": "Lagoa De Albufeira",
+    "location": "Lagoa",
+    "region": "Portugal",
+    "stream_slug": "bclagoaalbufeira"
+  },
+  {
+    "id": "praiadomeco",
+    "name": "Praia Do Meco",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcmeco"
+  },
+  {
+    "id": "odeceixe",
+    "name": "Odeceixe",
+    "location": "Odeceixe",
+    "region": "Portugal",
+    "stream_slug": "bcodeceixe"
+  },
+  {
+    "id": "praiadovau",
+    "name": "Praia Do Vau",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcvauportimao"
+  },
+  {
+    "id": "saojuliao",
+    "name": "Sao Juliao",
+    "location": "Sao",
+    "region": "Portugal",
+    "stream_slug": "bcsaojuliao"
+  },
+  {
+    "id": "costadacaparicacds",
+    "name": "Costa Da Caparica Cds",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "costacaparicabernard"
+  },
+  {
+    "id": "praiadaalagoa",
+    "name": "Praia Da Alagoa",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "pacodearcos",
+    "name": "Paco De Arcos",
+    "location": "Paco",
+    "region": "Portugal",
+    "stream_slug": "parcos"
+  },
+  {
+    "id": "fontedatelhasul",
+    "name": "Fonte Da Telha Sul",
+    "location": "Fonte",
+    "region": "Portugal",
+    "stream_slug": "bcbambu"
+  },
+  {
+    "id": "cresmina",
+    "name": "Cresmina",
+    "location": "Cresmina",
+    "region": "Portugal",
+    "stream_slug": "crismina"
+  },
+  {
+    "id": "senhoradarochapraianova",
+    "name": "Senhora Da Rocha Praia Nova",
+    "location": "Senhora",
+    "region": "Portugal",
+    "stream_slug": "bcigreja"
+  },
+  {
+    "id": "praiadasbicas",
+    "name": "Praia Das Bicas",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcpraiadasbicas"
+  },
+  {
+    "id": "praiadaconsolacao",
+    "name": "Praia Da Consolacao",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcconsolacao"
+  },
+  {
+    "id": "praiadocarvalhal",
+    "name": "Praia Do Carvalhal",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "carvalhal"
+  },
+  {
+    "id": "troia",
+    "name": "Troia",
+    "location": "Troia",
+    "region": "Portugal",
+    "stream_slug": "bctroia"
+  },
+  {
+    "id": "espinhosilvade",
+    "name": "Espinho Silvade",
+    "location": "Espinho",
+    "region": "Portugal",
+    "stream_slug": "bcsilvade"
+  },
+  {
+    "id": "praiadarochamarina",
+    "name": "Praia Da Rocha Marina",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcrochaportimao2"
+  },
+  {
+    "id": "ferragudo",
+    "name": "Ferragudo",
+    "location": "Ferragudo",
+    "region": "Portugal",
+    "stream_slug": "ferragudo"
+  },
+  {
+    "id": "vianadocasteloafifearda",
+    "name": "Viana Do Castelo Afife Arda",
+    "location": "Viana",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "fajadaareia",
+    "name": "Faja Da Areia",
+    "location": "Faja",
+    "region": "Portugal",
+    "stream_slug": "bcfaja"
+  },
+  {
+    "id": "ilhadofarolculatra",
+    "name": "Ilha Do Farol Culatra",
+    "location": "Ilha",
+    "region": "Portugal",
+    "stream_slug": "bcfarolfaro"
+  },
+  {
+    "id": "portinhodaarrabida",
+    "name": "Portinho Da Arrabida",
+    "location": "Portinho",
+    "region": "Portugal",
+    "stream_slug": "bcportinho"
+  },
+  {
+    "id": "nazarefortesaomiguelarcanjo",
+    "name": "Nazare Forte Sao Miguel Arcanjo",
+    "location": "Nazare",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "zambujeiradomar",
+    "name": "Zambujeira Do Mar",
+    "location": "Zambujeira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadaconceicaoeduquesa",
+    "name": "Praia Da Conceicao E Duquesa",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiaossodabaleia",
+    "name": "Praia Osso Da Baleia",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "vagueira",
+    "name": "Vagueira",
+    "location": "Vagueira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "murtinheira",
+    "name": "Murtinheira",
+    "location": "Murtinheira",
+    "region": "Portugal",
+    "stream_slug": "bcmurtinheira"
+  },
+  {
+    "id": "almograve",
+    "name": "Almograve",
+    "location": "Almograve",
+    "region": "Portugal",
+    "stream_slug": "bcalmograve"
+  },
+  {
+    "id": "lecadapalmeirapanoramincaaterro",
+    "name": "Leca Da Palmeira Panoraminca Aterro",
+    "location": "Leca",
+    "region": "Portugal",
+    "stream_slug": "bcfarolleca"
+  },
+  {
+    "id": "portocarneiro",
+    "name": "Porto Carneiro",
+    "location": "Porto",
+    "region": "Portugal",
+    "stream_slug": "bccarneiro"
+  },
+  {
+    "id": "matadouro",
+    "name": "Matadouro",
+    "location": "Matadouro",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadasavencas",
+    "name": "Praia Das Avencas",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "praiadasavencas"
+  },
+  {
+    "id": "praiadasrocas",
+    "name": "Praia Das Rocas",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "lagoadesantoandre",
+    "name": "Lagoa De Santo Andre",
+    "location": "Lagoa",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "pedradoouro",
+    "name": "Pedra Do Ouro",
+    "location": "Pedra",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "costadecaparicapraiadonorte",
+    "name": "Costa De Caparica Praia Do Norte",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "costacaparicasaojoao"
+  },
+  {
+    "id": "farooeste",
+    "name": "Faro Oeste",
+    "location": "Faro",
+    "region": "Portugal",
+    "stream_slug": "bcfaropraia"
+  },
+  {
+    "id": "ericeirasaolourenco",
+    "name": "Ericeira Sao Lourenco",
+    "location": "Ericeira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "seixal",
+    "name": "Seixal",
+    "location": "Seixal",
+    "region": "Portugal",
+    "stream_slug": "bcmadeiraseixal"
+  },
+  {
+    "id": "albarquel",
+    "name": "Albarquel",
+    "location": "Albarquel",
+    "region": "Portugal",
+    "stream_slug": "bcalbarquel"
+  },
+  {
+    "id": "vagueiracasablanca",
+    "name": "Vagueiracasablanca",
+    "location": "Vagueiracasablanca",
+    "region": "Portugal",
+    "stream_slug": "vagueiracasablanca"
+  },
+  {
+    "id": "portohomemdoleme",
+    "name": "Porto Homem Do Leme",
+    "location": "Porto",
+    "region": "Portugal",
+    "stream_slug": "bchomemdoleme"
+  },
+  {
+    "id": "ericeirapraiadacalada",
+    "name": "Ericeira Praia Da Calada",
+    "location": "Ericeira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "vagueiraareao",
+    "name": "Vagueira Areao",
+    "location": "Vagueira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "cordoama",
+    "name": "Cordoama",
+    "location": "Cordoama",
+    "region": "Portugal",
+    "stream_slug": "cordoama"
+  },
+  {
+    "id": "praiapequena",
+    "name": "Praia Pequena",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "vilanovademilfontesfurnasmar",
+    "name": "Vila Nova De Milfontes Furnas Mar",
+    "location": "Vila",
+    "region": "Portugal",
+    "stream_slug": "furnasmar"
+  },
+  {
+    "id": "pontapequena",
+    "name": "Ponta Pequena",
+    "location": "Ponta",
+    "region": "Portugal",
+    "stream_slug": "madeirajardimdomar"
+  },
+  {
+    "id": "madeirajardimdomar",
+    "name": "Madeira Jardim Do Mar",
+    "location": "Madeira",
+    "region": "Portugal",
+    "stream_slug": "jardimdomardois"
+  },
+  {
+    "id": "praiadarochamiradouro",
+    "name": "Praia Da Rocha Miradouro",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcmiradourorocha"
+  },
+  {
+    "id": "portimaopraiadoamado",
+    "name": "Portimao Praia Do Amado",
+    "location": "Portimao",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "esposendefozdocavado",
+    "name": "Esposende Foz Do Cavado",
+    "location": "Esposende",
+    "region": "Portugal",
+    "stream_slug": "bcfarolesposende"
+  },
+  {
+    "id": "praiadesaojacintobarra",
+    "name": "Praia De Sao Jacinto Barra",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcfarolbarra"
+  },
+  {
+    "id": "saojoaodoestoril",
+    "name": "Sao Joao Do Estoril",
+    "location": "Sao",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "penichesupertubosestatica",
+    "name": "Penichesupertubosestatica",
+    "location": "Penichesupertubosestatica",
+    "region": "Portugal",
+    "stream_slug": "bcsupertubosfixa"
+  },
+  {
+    "id": "alvornascente",
+    "name": "Alvor Nascente",
+    "location": "Alvor",
+    "region": "Portugal",
+    "stream_slug": "bcalvornascente"
+  },
+  {
+    "id": "praiadasmoitas",
+    "name": "Praia Das Moitas",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "sagres",
+    "name": "Sagres",
+    "location": "Sagres",
+    "region": "Portugal",
+    "stream_slug": "bcsagres"
+  },
+  {
+    "id": "bafureira",
+    "name": "Bafureira",
+    "location": "Bafureira",
+    "region": "Portugal",
+    "stream_slug": "bcbafureirafixa"
+  },
+  {
+    "id": "vilanovademilfontesfranquia",
+    "name": "Vila Nova De Milfontes Franquia",
+    "location": "Vila",
+    "region": "Portugal",
+    "stream_slug": "bcfranquia"
+  },
+  {
+    "id": "vilanovademilfontesfarol",
+    "name": "Vila Nova De Milfontes Farol",
+    "location": "Vila",
+    "region": "Portugal",
+    "stream_slug": "bcfarol"
+  },
+  {
+    "id": "nazareportodeabrigo",
+    "name": "Nazare Porto De Abrigo",
+    "location": "Nazare",
+    "region": "Portugal",
+    "stream_slug": "bcportodeabrigo"
+  },
+  {
+    "id": "penichelagideestatica",
+    "name": "Peniche Lagide Estatica",
+    "location": "Peniche",
+    "region": "Portugal",
+    "stream_slug": "bclagidefixa"
+  },
+  {
+    "id": "carvalhal",
+    "name": "Carvalhal",
+    "location": "Carvalhal",
+    "region": "Portugal",
+    "stream_slug": "bccarvalhalodemira"
+  },
+  {
+    "id": "ferreiradozezerelagoazul",
+    "name": "Ferreira Do Zezere Lago Azul",
+    "location": "Ferreira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "nazarefortesaomiguelarcanjobaia",
+    "name": "Nazare Forte Sao Miguel Arcanjo Baia",
+    "location": "Nazare",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "espinhopicodocasino",
+    "name": "Espinhopicodocasino",
+    "location": "Espinhopicodocasino",
+    "region": "Portugal",
+    "stream_slug": "bcespinhofixa"
+  },
+  {
+    "id": "penichemolhelesteestatica",
+    "name": "Penichemolhelesteestatica",
+    "location": "Penichemolhelesteestatica",
+    "region": "Portugal",
+    "stream_slug": "bcmolheleste"
+  },
+  {
+    "id": "lisboabelem",
+    "name": "Lisboa Belem",
+    "location": "Lisboa",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "ribeiradilhasestatica",
+    "name": "Ribeira Dilhas Estatica",
+    "location": "Ribeira",
+    "region": "Portugal",
+    "stream_slug": "bcribeirafixa"
+  },
+  {
+    "id": "penichelagidecantinhodabaiaestatica",
+    "name": "Peniche Lagide Cantinho Da Baia Estatica",
+    "location": "Peniche",
+    "region": "Portugal",
+    "stream_slug": "bcbalealcantinho"
+  },
+  {
+    "id": "costadecaparicasaojoaoestatica",
+    "name": "Costa De Caparica Sao Joao Estatica",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bccostasaojoaofixa"
+  },
+  {
+    "id": "ferreiradozezeredornes",
+    "name": "Ferreira Do Zezere Dornes",
+    "location": "Ferreira",
+    "region": "Portugal",
+    "stream_slug": "bcdornes"
+  },
+  {
+    "id": "nazarefortesaomiguelarcanjopanoramica",
+    "name": "Nazare Forte Sao Miguel Arcanjo Panoramica",
+    "location": "Nazare",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadoguinchoestatica",
+    "name": "Praia Do Guincho Estatica",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcguinchofixa"
+  },
+  {
+    "id": "praiadoalemao",
+    "name": "Praia Do Alemao",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadarochaestatica",
+    "name": "Praia Da Rocha Estatica",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "saopedrodoestorilbicoestatica",
+    "name": "Sao Pedro Do Estoril Bico Estatica",
+    "location": "Sao",
+    "region": "Portugal",
+    "stream_slug": "bcsaopedrofixa"
+  },
+  {
+    "id": "pacodearcosestatica",
+    "name": "Paco De Arcos Estatica",
+    "location": "Paco",
+    "region": "Portugal",
+    "stream_slug": "pacodearcosfixa"
+  },
+  {
+    "id": "figueiradafozbuarcosestatica",
+    "name": "Figueiradafozbuarcosestatica",
+    "location": "Figueiradafozbuarcosestatica",
+    "region": "Portugal",
+    "stream_slug": "bcbuarcos"
+  },
+  {
+    "id": "santoamaroestatica",
+    "name": "Santo Amaro Estatica",
+    "location": "Santo",
+    "region": "Portugal",
+    "stream_slug": "santoamarofixa"
+  },
+  {
+    "id": "praiafluvialdocabril",
+    "name": "Praia Fluvial Do Cabril",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bccabril"
+  },
+  {
+    "id": "carcavelosnorteestatica",
+    "name": "Carcavelos Norte Estatica",
+    "location": "Carcavelos",
+    "region": "Portugal",
+    "stream_slug": "bccarcavelosnortefixa"
+  },
+  {
+    "id": "vilamoura",
+    "name": "Vilamoura",
+    "location": "Vilamoura",
+    "region": "Portugal",
+    "stream_slug": "bcloule1"
+  },
+  {
+    "id": "costadacaparicapraianovaestatica",
+    "name": "Costa Da Caparica Praia Nova Estatica",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bcnovapraia"
+  },
+  {
+    "id": "espinhosilvadeestatica",
+    "name": "Espinhosilvadeestatica",
+    "location": "Espinhosilvadeestatica",
+    "region": "Portugal",
+    "stream_slug": "bcsilvadefixa"
+  },
+  {
+    "id": "costadacaparicanovapraia",
+    "name": "Costa Da Caparica Nova Praia",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bcbarracuda"
+  },
+  {
+    "id": "carcaveloscalhauestatica",
+    "name": "Carcavelos Calhau Estatica",
+    "location": "Carcavelos",
+    "region": "Portugal",
+    "stream_slug": "bccarcaveloscalhaufixa"
+  },
+  {
+    "id": "faroldobugionorte",
+    "name": "Farol Do Bugio Norte",
+    "location": "Farol",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "praiadesaotorpesestatica",
+    "name": "Praia De Sao Torpes Estatica",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcsaotorpes2"
+  },
+  {
+    "id": "caxinasmacaco17",
+    "name": "Caxinas Macaco 17",
+    "location": "Caxinas",
+    "region": "Portugal",
+    "stream_slug": "bccaxinas"
+  },
+  {
+    "id": "boardridersskatepark",
+    "name": "Boardriders Skatepark",
+    "location": "Boardriders",
+    "region": "Portugal",
+    "stream_slug": "matadouroskate"
+  },
+  {
+    "id": "paredeestatica",
+    "name": "Parede Estatica",
+    "location": "Parede",
+    "region": "Portugal",
+    "stream_slug": "bcparedefixa"
+  },
+  {
+    "id": "praiadasmoitasestatica",
+    "name": "Praia Das Moitas Estatica",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bctamarizfixa"
+  },
+  {
+    "id": "costadacaparicatarquiniofixa",
+    "name": "Costa Da Caparica Tarquinio Fixa",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bctarquinho2"
+  },
+  {
+    "id": "faroldobugiosul",
+    "name": "Farol Do Bugio Sul",
+    "location": "Farol",
+    "region": "Portugal",
+    "stream_slug": "bctestes"
+  },
+  {
+    "id": "vianadocastelowakepark",
+    "name": "Viana Do Castelo Wakepark",
+    "location": "Viana",
+    "region": "Portugal",
+    "stream_slug": "bccabedelocablepark"
+  },
+  {
+    "id": "costadecaparicacdssulestatica",
+    "name": "Costadecaparicacdssulestatica",
+    "location": "Costadecaparicacdssulestatica",
+    "region": "Portugal",
+    "stream_slug": "bcdrbernard"
+  },
+  {
+    "id": "madeiramaiata",
+    "name": "Madeira Maiata",
+    "location": "Madeira",
+    "region": "Portugal",
+    "stream_slug": "bcmaiata"
+  },
+  {
+    "id": "costadacaparicacdsnorteestatica",
+    "name": "Costa Da Caparica Cds Norte Estatica",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bccaparicanortefixa"
+  },
+  {
+    "id": "ferreiradozezerelagoazulcablepark",
+    "name": "Ferreira Do Zezere Lago Azul Cable Park",
+    "location": "Ferreira",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "skiclubequintagrande",
+    "name": "Ski Clube Quinta Grande",
+    "location": "Ski",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "costadecaparicapraianorteestatica",
+    "name": "Costadecaparicapraianorteestatica",
+    "location": "Costadecaparicapraianorteestatica",
+    "region": "Portugal",
+    "stream_slug": "bccostasantoantonio"
+  },
+  {
+    "id": "nazarefortesaomiguelarcanjopanoramica1",
+    "name": "Nazare Forte Sao Miguel Arcanjo Panoramica 1",
+    "location": "Nazare",
+    "region": "Portugal",
+    "stream_slug": ""
+  },
+  {
+    "id": "costadecaparicapraiadasereiamorena",
+    "name": "Costa De Caparica Praia Da Sereia Morena",
+    "location": "Costa",
+    "region": "Portugal",
+    "stream_slug": "bcwaikiki"
+  },
+  {
+    "id": "praiaquarteiraeste",
+    "name": "Praia Quarteira Este",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcloule3"
+  },
+  {
+    "id": "praiaquarteiraoeste",
+    "name": "Praia Quarteira Oeste",
+    "location": "Praia",
+    "region": "Portugal",
+    "stream_slug": "bcloule2"
+  }
+]
