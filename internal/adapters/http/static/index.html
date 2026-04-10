@@ -88,7 +88,9 @@
       display:grid;
       grid-template-columns:300px 1fr;
       min-height:calc(100dvh - 56px);
+      transition:grid-template-columns .3s ease;
     }
+    .app.map-active{grid-template-columns:1fr 1fr}
 
     /* === SIDEBAR === */
     .sidebar{
@@ -285,24 +287,127 @@
     }
     @keyframes spin{to{transform:rotate(360deg)}}
 
+    /* === TABS === */
+    .tab-nav{display:flex;gap:3px;background:var(--card);border-radius:var(--r-sm);padding:3px}
+    .tab-btn{
+      background:none;border:none;color:var(--text2);
+      padding:6px 16px;border-radius:8px;
+      font-size:12px;font-weight:600;font-family:inherit;
+      cursor:pointer;transition:all .2s;
+    }
+    .tab-btn.active{background:var(--gradient);color:#000}
+    .tab-btn:hover:not(.active){color:var(--text)}
+
+    /* === MAP PANEL (left side, replaces sidebar) === */
+    .map-panel{
+      background:var(--surface-solid);
+      border-right:1px solid var(--border);
+      display:flex;flex-direction:column;overflow:hidden;
+      position:relative;
+      grid-column:1;grid-row:1;
+    }
+    .sidebar{grid-column:1;grid-row:1}
+    .main{grid-column:2;grid-row:1}
+    .map-container{
+      flex:1;overflow:hidden;cursor:grab;position:relative;
+      touch-action:none;user-select:none;
+    }
+    .map-container.grabbing{cursor:grabbing}
+    .map-svg{width:100%;height:100%;display:block}
+    .map-svg .land{fill:var(--card);stroke:var(--border-active);stroke-width:1.2}
+    .map-svg .inset-box{fill:var(--surface-solid);stroke:var(--border);stroke-width:1;stroke-dasharray:4,3;rx:6}
+    .map-svg .inset-label{fill:var(--text2);font-size:12px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:0.5px}
+    .map-svg .city-label{fill:var(--text3);font-size:9px;font-family:'Inter',sans-serif;pointer-events:none}
+    .map-dot{cursor:pointer}
+    .map-dot .dot-bg{fill:var(--cyan);opacity:0.25}
+    .map-dot .dot-core{fill:var(--cyan);transition:all .15s}
+    .map-dot:hover .dot-core{fill:var(--blue)}
+    .map-dot:hover .dot-bg{fill:var(--blue);opacity:0.35}
+    .map-dot .dot-pulse{fill:none;stroke:var(--cyan);stroke-width:0.8;opacity:0;animation:dotPulse 3s ease-out infinite}
+    .map-dot.active .dot-core{fill:var(--blue)}
+    .map-dot.active .dot-bg{fill:var(--blue);opacity:0.4}
+    @keyframes dotPulse{0%{r:4;opacity:0.5}100%{r:18;opacity:0}}
+    .dot-label{
+      fill:var(--text);font-size:7px;font-weight:600;
+      font-family:'Inter',sans-serif;pointer-events:none;
+    }
+    .map-controls{
+      position:absolute;bottom:16px;right:16px;
+      display:flex;flex-direction:column;gap:4px;z-index:10;
+    }
+    .map-ctrl-btn{
+      width:34px;height:34px;
+      background:var(--surface-solid);
+      border:1px solid var(--border);border-radius:8px;
+      color:var(--text);font-size:18px;font-weight:700;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      font-family:inherit;transition:all .15s;
+    }
+    .map-ctrl-btn:hover{background:var(--card-hover);border-color:var(--border-active)}
+    .map-tooltip{
+      position:absolute;
+      background:var(--surface-solid);
+      border:1px solid var(--border-active);
+      border-radius:var(--r-sm);
+      padding:6px 0;min-width:180px;max-height:220px;
+      overflow-y:auto;z-index:50;
+      box-shadow:0 8px 32px rgba(0,0,0,0.5);
+      display:none;
+    }
+    .map-tooltip .tt-header{
+      padding:6px 14px 8px;font-size:10px;color:var(--text3);
+      text-transform:uppercase;letter-spacing:0.5px;font-weight:600;
+      border-bottom:1px solid var(--border);margin-bottom:2px;
+    }
+    .map-tooltip .tt-item{
+      padding:7px 14px;cursor:pointer;font-size:12px;font-weight:500;
+      display:flex;align-items:center;gap:8px;transition:background .15s;
+    }
+    .map-tooltip .tt-item:hover{background:var(--card-hover)}
+    .map-tooltip .tt-dot{
+      width:6px;height:6px;border-radius:50%;flex-shrink:0;
+    }
+    .map-tooltip .tt-dot.live{background:var(--cyan);box-shadow:0 0 4px rgba(6,214,160,0.5)}
+    .map-tooltip .tt-dot.offline{background:var(--text3)}
+    .map-count{
+      fill:#000;font-size:7px;font-weight:800;
+      font-family:'Inter',sans-serif;text-anchor:middle;
+      dominant-baseline:central;pointer-events:none;
+    }
+
     /* === SCROLLBAR === */
     ::-webkit-scrollbar{width:6px}
     ::-webkit-scrollbar-track{background:transparent}
     ::-webkit-scrollbar-thumb{background:var(--card);border-radius:3px}
     ::-webkit-scrollbar-thumb:hover{background:var(--card-hover)}
+
+    @media(max-width:768px){
+      .app.map-active{grid-template-columns:1fr}
+      .map-panel{
+        position:fixed;inset:56px 0 0 0;z-index:90;
+        transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+      }
+      .map-panel.open{transform:translateX(0)}
+      .tab-nav{gap:2px}
+      .tab-btn{padding:5px 10px;font-size:11px}
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">BEACH LIVE</div>
     <div class="header-right">
+      <div class="tab-nav">
+        <button class="tab-btn" id="tabSpots" onclick="switchTab('spots')">Spots</button>
+        <button class="tab-btn active" id="tabMapa" onclick="switchTab('mapa')">Mapa</button>
+      </div>
       <button class="mobile-toggle" onclick="toggleSidebar()">Spots</button>
       <div class="badge"><span class="live-dot"></span> <b id="headerCount">187</b> spots</div>
     </div>
   </header>
 
-  <div class="app">
-    <aside class="sidebar" id="sidebar">
+  <div class="app map-active">
+    <aside class="sidebar" id="sidebar" style="display:none;">
       <div class="search-box">
         <div class="search-wrap">
           <span class="search-icon">&#x1F50D;</span>
@@ -313,11 +418,21 @@
       <div class="camera-list" id="cameraList"></div>
     </aside>
 
+    <aside class="map-panel" id="mapPanel">
+      <div class="map-container" id="mapContainer"></div>
+      <div class="map-controls">
+        <button class="map-ctrl-btn" onclick="mapZoomBtn(1)" title="Zoom in">+</button>
+        <button class="map-ctrl-btn" onclick="mapZoomBtn(-1)" title="Zoom out">&minus;</button>
+        <button class="map-ctrl-btn" onclick="mapReset()" title="Reset" style="font-size:13px">&#x21BA;</button>
+      </div>
+      <div class="map-tooltip" id="mapTooltip"></div>
+    </aside>
+
     <main class="main" id="main">
       <div class="empty-state" id="emptyState">
         <div class="empty-wave">&#x1F30A;</div>
         <div class="empty-title">Escolhe o teu spot</div>
-        <div class="empty-sub">Seleciona uma praia na lista para ver o stream ao vivo e as condicoes do mar</div>
+        <div class="empty-sub">Seleciona uma praia no mapa ou na lista para ver o stream ao vivo e as condicoes do mar</div>
       </div>
 
       <div id="playerSection" style="display:none;">
@@ -374,6 +489,10 @@
         document.getElementById('camCount').textContent = `${filtered.length} spots`;
         renderCameraList(filtered);
       });
+
+      // Default tab is map
+      renderMap();
+      setupMapInteractions();
     }
 
     function renderCameraList(list) {
@@ -402,8 +521,7 @@
       document.getElementById('liveBadge').style.display = 'none';
       document.getElementById('conditions').innerHTML =
         '<div class="cond-card" style="grid-column:1/-1;padding:24px"><div class="spinner" style="margin:0 auto"></div></div>';
-      refilter();
-      closeSidebar();
+      if (currentTab === 'spots') { refilter(); closeSidebar(); }
 
       loadStream(id);
       loadConditions(id);
@@ -519,6 +637,382 @@
         if (!res.ok) return null;
         return await res.json();
       } catch { return null; }
+    }
+
+    // === MAP ===
+    const CAMERA_COORDS = {
+      'peniche':[39.36,-9.38],'nazare':[39.60,-9.07],
+      'costadacaparica':[38.63,-9.24],'costa':[38.63,-9.24],
+      'cascais':[38.69,-9.42],'estoril':[38.70,-9.40],
+      'carcavelos':[38.68,-9.34],'parede':[38.69,-9.36],
+      'santoamaro':[38.69,-9.35],'torre':[38.68,-9.32],
+      'ericeira':[38.96,-9.42],
+      'faro':[37.02,-7.93],'lagos':[37.10,-8.67],
+      'portimao':[37.12,-8.54],'albufeira':[37.09,-8.25],
+      'sagres':[37.01,-8.95],'tavira':[37.13,-7.65],
+      'porto':[41.15,-8.63],'matosinhos':[41.18,-8.69],
+      'espinho':[41.01,-8.64],'gaia':[41.12,-8.65],
+      'viana':[41.69,-8.85],'esposende':[41.53,-8.79],
+      'figueiradafoz':[40.15,-8.86],'aveiro':[40.64,-8.65],
+      'setubal':[38.52,-8.90],'sines':[37.95,-8.88],
+      'funchal':[32.65,-16.91],'portosanto':[33.07,-16.34],
+      'pontadelgada':[37.74,-25.67],
+      'lisboa':[38.72,-9.14],'almada':[38.68,-9.16],
+      'madeira':[32.65,-16.91],'madeirapauldomar':[32.75,-17.18],
+      'praiadavitoria':[38.73,-27.06],'angra':[38.65,-27.22],
+      'baleal':[39.37,-9.34],'consolacao':[39.33,-9.36],
+      'sesimbra':[38.44,-9.10],'caparica':[38.63,-9.24],
+      'guincho':[38.73,-9.47],'praiameca':[38.70,-9.43],
+      'vilamoura':[37.07,-8.12],'quarteira':[37.07,-8.10],
+      'olhos':[37.09,-8.18],'armacao':[37.10,-8.36],
+      'carvoeiro':[37.09,-8.47],'alvor':[37.12,-8.60],
+      'meia':[37.10,-8.67],'dona':[37.10,-8.67],
+      'caminha':[41.87,-8.84],'moledo':[41.85,-8.87],
+      'cabedelo':[41.69,-8.85],'afife':[41.77,-8.88],
+      'ancora':[41.81,-8.87],
+      'ofir':[41.52,-8.79],'apulia':[41.48,-8.77],
+      'leca':[41.20,-8.70],'miramar':[41.07,-8.66],
+      'granja':[41.04,-8.65],'aguda':[41.05,-8.65],
+      'furadouro':[40.88,-8.68],'torreira':[40.76,-8.72],
+      'barra':[40.63,-8.75],'costa nova':[40.61,-8.75],
+      'vieira':[40.08,-8.90],'pedrogao':[39.92,-8.97],
+      'sao pedro':[39.35,-9.38],'areia branca':[39.23,-9.33],
+      'santa cruz':[39.14,-9.39],'ribeira d\'ilhas':[38.98,-9.42],
+      'foz do lizandro':[38.94,-9.42],
+    };
+
+    function guessCameraCoords(cam) {
+      const id = cam.id.toLowerCase();
+      if (CAMERA_COORDS[id]) return CAMERA_COORDS[id];
+      for (const k in CAMERA_COORDS) { if (id.startsWith(k)) return CAMERA_COORDS[k]; }
+      for (const k in CAMERA_COORDS) { if (id.includes(k)) return CAMERA_COORDS[k]; }
+      return [38.72, -9.14];
+    }
+
+    function getRegion(coords) {
+      const [lat, lon] = coords;
+      if (lat < 34 && lon < -15) return 'madeira';
+      if (lon < -20) return 'azores';
+      return 'mainland';
+    }
+
+    // Portugal outline (simplified)
+    const PORTUGAL_COAST = [
+      [42.08,-8.63],[41.87,-8.87],[41.70,-8.87],[41.53,-8.80],
+      [41.23,-8.72],[41.15,-8.69],[41.00,-8.65],[40.85,-8.72],
+      [40.64,-8.75],[40.35,-8.85],[40.15,-8.88],[39.75,-9.03],
+      [39.60,-9.07],[39.45,-9.20],[39.36,-9.38],[39.22,-9.35],
+      [39.10,-9.26],[38.96,-9.42],[38.78,-9.50],[38.70,-9.42],
+      [38.68,-9.22],[38.63,-9.24],[38.50,-9.20],[38.47,-8.90],
+      [38.30,-8.80],[38.00,-8.88],[37.75,-8.80],[37.52,-8.78],
+      [37.30,-8.85],[37.08,-8.98],[37.01,-8.95],[36.99,-8.73],
+      [37.09,-8.25],[37.02,-7.93],[37.17,-7.41],
+      [37.25,-7.41],[37.95,-6.95],[38.65,-7.05],[39.10,-7.05],
+      [39.45,-6.35],[39.90,-6.90],[40.30,-6.80],[40.75,-6.75],
+      [41.10,-6.55],[41.55,-6.60],[41.87,-6.60],[42.00,-7.05],
+      [42.10,-7.60],[42.10,-8.20],[42.08,-8.63],
+    ];
+
+    const MADEIRA_OUTLINE = [
+      [32.88,-17.27],[32.92,-16.95],[32.87,-16.68],[32.75,-16.63],
+      [32.62,-16.70],[32.60,-16.95],[32.65,-17.20],[32.88,-17.27],
+    ];
+    const PORTO_SANTO_OUTLINE = [
+      [33.12,-16.42],[33.13,-16.28],[33.05,-16.25],[33.03,-16.38],[33.12,-16.42],
+    ];
+    const AZORES_SAO_MIGUEL = [
+      [37.90,-25.90],[37.88,-25.45],[37.72,-25.08],[37.68,-25.15],
+      [37.73,-25.50],[37.78,-25.85],[37.90,-25.90],
+    ];
+
+    const SVG_W = 620, SVG_H = 920;
+    // Mainland projection bounds
+    const ML = {latMin:36.80,latMax:42.25,lonMin:-9.60,lonMax:-6.10,x:140,y:30,w:440,h:800};
+    // Madeira inset
+    const MD = {latMin:32.45,latMax:33.25,lonMin:-17.40,lonMax:-16.10,x:15,y:760,w:120,h:100};
+    // Azores inset
+    const AZ = {latMin:37.55,latMax:38.05,lonMin:-26.10,lonMax:-24.90,x:15,y:630,w:120,h:100};
+
+    function project(lat, lon, b) {
+      const x = b.x + ((lon - b.lonMin) / (b.lonMax - b.lonMin)) * b.w;
+      const y = b.y + ((b.latMax - lat) / (b.latMax - b.latMin)) * b.h;
+      return [x, y];
+    }
+
+    function polyPath(coords, bounds) {
+      return coords.map((c, i) => {
+        const [x, y] = project(c[0], c[1], bounds);
+        return (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1);
+      }).join(' ') + ' Z';
+    }
+
+    let currentTab = 'mapa';
+    let mapRendered = false;
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.getElementById('tabSpots').classList.toggle('active', tab === 'spots');
+      document.getElementById('tabMapa').classList.toggle('active', tab === 'mapa');
+      document.querySelector('.app').classList.toggle('map-active', tab === 'mapa');
+
+      // Toggle left panels: sidebar vs map
+      document.getElementById('sidebar').style.display = tab === 'spots' ? '' : 'none';
+      document.getElementById('mapPanel').style.display = tab === 'mapa' ? 'flex' : 'none';
+
+      // On mobile, auto-open the map panel
+      if (tab === 'mapa') {
+        document.getElementById('mapPanel').classList.add('open');
+        document.getElementById('sidebar').classList.remove('open');
+        if (!mapRendered && cameras.length) { renderMap(); setupMapInteractions(); }
+      }
+
+      // Player always stays in main area
+      if (activeCamera) {
+        document.getElementById('emptyState').style.display = 'none';
+        document.getElementById('playerSection').style.display = 'block';
+      } else {
+        document.getElementById('emptyState').style.display = 'flex';
+        document.getElementById('playerSection').style.display = 'none';
+      }
+      closeTooltip();
+    }
+
+    function getGroupLabel(g) {
+      if (g.cameras.length === 1) return g.cameras[0].name;
+      const loc = g.cameras[0].location;
+      if (loc && loc.length > 2 && !['Praia','praia'].includes(loc)) return loc;
+      // Extract common prefix from camera names
+      const names = g.cameras.map(c => c.name);
+      const first = names[0].split(' ');
+      for (let i = first.length; i > 0; i--) {
+        const prefix = first.slice(0, i).join(' ');
+        if (names.every(n => n.startsWith(prefix))) return prefix;
+      }
+      return names[0].split(' ').slice(0, 2).join(' ');
+    }
+
+    function renderMap() {
+      mapRendered = true;
+      const groups = {};
+      cameras.forEach(cam => {
+        const coords = guessCameraCoords(cam);
+        const region = getRegion(coords);
+        const key = coords[0].toFixed(2) + ',' + coords[1].toFixed(2);
+        if (!groups[key]) groups[key] = { coords, region, cameras: [] };
+        groups[key].cameras.push(cam);
+      });
+
+      let svg = `<svg class="map-svg" viewBox="0 0 ${SVG_W} ${SVG_H}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">`;
+      // Mainland
+      svg += `<path class="land" d="${polyPath(PORTUGAL_COAST, ML)}"/>`;
+      // Inset boxes
+      svg += `<rect class="inset-box" x="${MD.x-5}" y="${MD.y-25}" width="${MD.w+10}" height="${MD.h+35}"/>`;
+      svg += `<text class="inset-label" x="${MD.x + MD.w/2}" y="${MD.y-10}" text-anchor="middle">Madeira</text>`;
+      svg += `<path class="land" d="${polyPath(MADEIRA_OUTLINE, MD)}"/>`;
+      svg += `<path class="land" d="${polyPath(PORTO_SANTO_OUTLINE, MD)}"/>`;
+
+      svg += `<rect class="inset-box" x="${AZ.x-5}" y="${AZ.y-25}" width="${AZ.w+10}" height="${AZ.h+35}"/>`;
+      svg += `<text class="inset-label" x="${AZ.x + AZ.w/2}" y="${AZ.y-10}" text-anchor="middle">Acores</text>`;
+      svg += `<path class="land" d="${polyPath(AZORES_SAO_MIGUEL, AZ)}"/>`;
+
+      // Camera dots with labels
+      Object.entries(groups).forEach(([key, g]) => {
+        const b = g.region === 'madeira' ? MD : g.region === 'azores' ? AZ : ML;
+        const [x, y] = project(g.coords[0], g.coords[1], b);
+        const r = Math.min(6, 3 + g.cameras.length * 0.3);
+        const label = getGroupLabel(g);
+        const countTxt = g.cameras.length > 1 ? ` (${g.cameras.length})` : '';
+        svg += `<g class="map-dot" data-key="${key}" onclick="showMapTooltip(event,'${key}')">`;
+        svg += `<circle class="dot-pulse" cx="${x}" cy="${y}" r="4"/>`;
+        svg += `<circle class="dot-bg" cx="${x}" cy="${y}" r="${r + 4}"/>`;
+        svg += `<circle class="dot-core" cx="${x}" cy="${y}" r="${r}"/>`;
+        svg += `<text class="dot-label" x="${x + r + 5}" y="${y + 2.5}">${label}${countTxt}</text>`;
+        svg += `</g>`;
+      });
+
+      svg += `</svg>`;
+      document.getElementById('mapContainer').innerHTML = svg;
+      window._mapGroups = groups;
+    }
+
+    function showMapTooltip(event, key) {
+      event.stopPropagation();
+      const g = window._mapGroups[key];
+      if (!g) return;
+      const tt = document.getElementById('mapTooltip');
+      const container = document.getElementById('mapContainer');
+      const rect = container.getBoundingClientRect();
+
+      if (g.cameras.length === 1) {
+        closeTooltip();
+        selectFromMap(g.cameras[0].id);
+        return;
+      }
+
+      let html = `<div class="tt-header">${g.cameras.length} cameras</div>`;
+      g.cameras.forEach(cam => {
+        html += `<div class="tt-item" onclick="selectFromMap('${cam.id}')">
+          <span class="tt-dot ${cam.stream_slug ? 'live' : 'offline'}"></span>
+          ${cam.name}
+        </div>`;
+      });
+      tt.innerHTML = html;
+      tt.style.display = 'block';
+
+      // Position near click
+      let left = event.clientX - rect.left + 10;
+      let top = event.clientY - rect.top;
+      if (left + 180 > rect.width) left = left - 200;
+      if (top + 150 > rect.height) top = top - 100;
+      tt.style.left = left + 'px';
+      tt.style.top = top + 'px';
+    }
+
+    function selectFromMap(id) {
+      closeTooltip();
+      selectCamera(id);
+      // Highlight active dot on map
+      document.querySelectorAll('.map-dot.active').forEach(d => d.classList.remove('active'));
+      const cam = cameras.find(c => c.id === id);
+      if (cam) {
+        const coords = guessCameraCoords(cam);
+        const key = coords[0].toFixed(2) + ',' + coords[1].toFixed(2);
+        const dot = document.querySelector(`.map-dot[data-key="${key}"]`);
+        if (dot) dot.classList.add('active');
+      }
+    }
+
+    function closeTooltip() {
+      document.getElementById('mapTooltip').style.display = 'none';
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.map-tooltip') && !e.target.closest('.map-dot')) closeTooltip();
+    });
+
+    // === ZOOM & PAN ===
+    let mapVB = { x: 0, y: 0, w: SVG_W, h: SVG_H };
+    let _dragging = false, _dragStart = { x: 0, y: 0 };
+    let _lastTouchDist = 0;
+
+    function updateViewBox() {
+      const svg = document.querySelector('.map-svg');
+      if (svg) svg.setAttribute('viewBox', `${mapVB.x} ${mapVB.y} ${mapVB.w} ${mapVB.h}`);
+    }
+
+    function mapZoomAt(delta, cx, cy) {
+      const svg = document.querySelector('.map-svg');
+      if (!svg) return;
+      const rect = svg.getBoundingClientRect();
+      const fx = (cx - rect.left) / rect.width;
+      const fy = (cy - rect.top) / rect.height;
+      // Normalize: clamp delta to -1..1 then apply a gentle 5% step
+      const d = Math.sign(delta) * Math.min(1, Math.abs(delta) / 100);
+      const factor = 1 + d * 0.05;
+      const nw = Math.max(SVG_W * 0.08, Math.min(SVG_W * 2, mapVB.w * factor));
+      const nh = Math.max(SVG_H * 0.08, Math.min(SVG_H * 2, mapVB.h * factor));
+      mapVB.x += (mapVB.w - nw) * fx;
+      mapVB.y += (mapVB.h - nh) * fy;
+      mapVB.w = nw;
+      mapVB.h = nh;
+      updateViewBox();
+    }
+
+    function mapZoomBtn(dir) {
+      const container = document.getElementById('mapContainer');
+      const rect = container.getBoundingClientRect();
+      mapZoomAt(dir * 300, rect.left + rect.width / 2, rect.top + rect.height / 2);
+    }
+
+    function mapReset() {
+      mapVB = { x: 0, y: 0, w: SVG_W, h: SVG_H };
+      updateViewBox();
+    }
+
+    function setupMapInteractions() {
+      const container = document.getElementById('mapContainer');
+
+      container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        mapZoomAt(e.deltaY, e.clientX, e.clientY);
+      }, { passive: false });
+
+      container.addEventListener('mousedown', (e) => {
+        if (e.button !== 0 || e.target.closest('.map-dot')) return;
+        _dragging = true;
+        _dragStart = { x: e.clientX, y: e.clientY };
+        container.classList.add('grabbing');
+        e.preventDefault();
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!_dragging) return;
+        const svg = document.querySelector('.map-svg');
+        if (!svg) return;
+        const rect = svg.getBoundingClientRect();
+        const dx = (e.clientX - _dragStart.x) / rect.width * mapVB.w;
+        const dy = (e.clientY - _dragStart.y) / rect.height * mapVB.h;
+        mapVB.x -= dx;
+        mapVB.y -= dy;
+        _dragStart = { x: e.clientX, y: e.clientY };
+        updateViewBox();
+      });
+
+      window.addEventListener('mouseup', () => {
+        _dragging = false;
+        container.classList.remove('grabbing');
+      });
+
+      // Touch: pan with 1 finger, pinch-zoom with 2
+      container.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          _dragging = true;
+          _dragStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        } else if (e.touches.length === 2) {
+          _dragging = false;
+          _lastTouchDist = Math.hypot(
+            e.touches[1].clientX - e.touches[0].clientX,
+            e.touches[1].clientY - e.touches[0].clientY
+          );
+        }
+      }, { passive: true });
+
+      container.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        if (e.touches.length === 1 && _dragging) {
+          const svg = document.querySelector('.map-svg');
+          if (!svg) return;
+          const rect = svg.getBoundingClientRect();
+          const dx = (e.touches[0].clientX - _dragStart.x) / rect.width * mapVB.w;
+          const dy = (e.touches[0].clientY - _dragStart.y) / rect.height * mapVB.h;
+          mapVB.x -= dx;
+          mapVB.y -= dy;
+          _dragStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+          updateViewBox();
+        } else if (e.touches.length === 2) {
+          const dist = Math.hypot(
+            e.touches[1].clientX - e.touches[0].clientX,
+            e.touches[1].clientY - e.touches[0].clientY
+          );
+          const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+          const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+          if (_lastTouchDist > 0) {
+            mapZoomAt(_lastTouchDist - dist, cx, cy);
+          }
+          _lastTouchDist = dist;
+        }
+      }, { passive: false });
+
+      container.addEventListener('touchend', () => {
+        _dragging = false;
+        _lastTouchDist = 0;
+      });
+
+      // Double-click to zoom in
+      container.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        mapZoomAt(300, e.clientX, e.clientY);
+      });
     }
 
     init();

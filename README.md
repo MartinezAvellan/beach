@@ -5,6 +5,8 @@ Backend em Go para cameras de praia ao vivo em Portugal com dados meteorologicos
 Catalogo estatico, streams HLS via URL direta, condicoes via APIs JSON publicas.
 
 ---
+![img.png](img.png)
+---
 
 ## Stack
 
